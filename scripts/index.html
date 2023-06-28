@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<!--
+    https://informacionpublica.paraguay.gov.py/public/7349223-SCAN0160PDF-SCAN0160.PDF
+-->
+<!-- Load d3.js and the geo projection plugin -->
+<script src="https://d3js.org/d3.v4.js"></script>
+<script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
+
+<!-- Button -->
+<div>
+  <input type="checkbox" class="checkbox" id="capacities" value="A" checked><label>Official Capacity</label>
+  <input type="checkbox" class="checkbox" id="capacities" value="B" checked><label>Pretrial Population</label>
+  <input type="checkbox" class="checkbox" id="capacities" value="C" checked><label>Convicted Population</label>
+  <input type="checkbox" class="checkbox" id="capacities" value="D" checked><label>Total Population</label>
+</div>
+
+<!--
+<div style="margin-top: 10px">
+    <input type="checkbox" class="checkbox" id="prisonbox" value="E" checked><label>Tacumbú</label>
+    <input type="checkbox" class="checkbox" id="prisonbox" value="F" checked><label>Embocsada</label>
+    <input type="checkbox" class="checkbox" id="prisonbox" value="G" checked><label>Pedro Juan Caballero</label>
+    <input type="checkbox" class="checkbox" id="prisonbox" value="H" checked><label>Ciudad del Este</label>
+  </div>-->
+
+<!-- Create an element where the map will take place -->
+<svg id="my_dataviz" width="1000" height="750"></svg>
+<script src="interactive_map.js"></script>
+
+<div></div>
+
+<svg id="overpop_bar" width="640" height="450"></svg>  
+<script src="overpop_bar.js"></script>
