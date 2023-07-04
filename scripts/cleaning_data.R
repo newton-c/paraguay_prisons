@@ -22,3 +22,4 @@ prison_data <- full_join(prison_pop, capacidad) %>%
 rm(list = c("capacidad", "prison_pop"))
 
 toJSON(prison_data)
+write_excel_csv(prison_data, "data/prison_data.csv")

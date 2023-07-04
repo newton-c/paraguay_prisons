@@ -33,6 +33,7 @@ overpop_data <- prison_data %>%
   mutate(overpopulation = (total / OfficialCapacity * 100)) 
 overpop_data$Prison <- as.factor(overpop_data$Prison) %>%
   fct_reorder(overpop_data$overpopulation)
+write_excel_csv(overpop_data, "data/overpop_data.csv")
 
 overcap <- ggplot(subset(overpop_data, !is.na(overpopulation))) +
   geom_col(aes(x = Prison, y = overpopulation), fill = "#A7213B") +
