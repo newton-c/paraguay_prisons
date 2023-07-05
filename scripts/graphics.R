@@ -37,16 +37,18 @@ prison_bar2 <-
            position = "dodge") +
   coord_flip() +
   scale_fill_manual(breaks = c("OfficialCapacity", "pretrial", "convicted"),
-                    values = c("#3B3B3B", "#A7213B", "#E5AD32"),
-                    labels = c("Official\nCapacity", "Pretrial", "Convicted")) +
-  labs(title = "Incarcerated Individuals in Paraguay",
-       subtitle = "May 2023") +
-  theme_ic()# +
-  theme(legend.position = c(-0.25, 1.05),
-        legend.direction = "horizontal")
+                    values = c("#415B4F", "#8FC7BD", "#867D79"),
+                    labels = c("Official Capacity", "Pretrial", "Convicted")) +
+  labs(title = "Incarcerated Individuals in Paraguay") +
+  theme_ic() +
+  theme(axis.title.x = element_text(family = "Roboto", color = "#3B3B3B",
+                                    size = 12),
+        axis.text.y = element_text(size = 12, color = "#3B3B3B"),
+        axis.text.x = element_text(size = 12, color = "#3B3B3B"),
+        legend.text = element_text(size = 12, color = "#3B3B3B")) 
 
 finalise_plot(plot_name = prison_bar2,
-              source = "Sources: Ministry of Justice",
+              source = "Source: Ministry of Justice, May 2023",
               save_filepath = "figs/bar_chart2_en.png",
               height_pixels = 640,
               width_pixels = 640)
@@ -58,13 +60,12 @@ overpop_data <- prison_data %>%
   mutate(overpopulation = (total / OfficialCapacity * 100)) 
 overpop_data$Prison <- as.factor(overpop_data$Prison) %>%
   fct_reorder(overpop_data$overpopulation)
-write_excel_csv(overpop_data, "data/overpop_data.csv")
+#write_excel_csv(overpop_data, "data/overpop_data.csv")
 
 overcap <- ggplot(subset(overpop_data, !is.na(overpopulation))) +
-  geom_col(aes(x = Prison, y = overpopulation), fill = "#A7213B") +
+  geom_col(aes(x = Prison, y = overpopulation), fill = "#415B4F") +
   coord_flip() +
-  labs(title = "Most Overpopulated Prisons in Paraguay",
-       subtitle = "May 2023") + 
+  labs(title = "Most Overpopulated Prisons in Paraguay") + 
   ylab("Actual Population vs Official Capaciaty (%)") +
   geom_hline(yintercept = 100, linetype = 2, color = "#3B3B3B") +
   geom_text(aes(x = 16.75, y = 105, label = "overcapacity", hjust = "left",
@@ -73,15 +74,17 @@ overcap <- ggplot(subset(overpop_data, !is.na(overpopulation))) +
             family = "Roboto"), color = "#3B3B3B") +
   geom_text(aes(x = 17.4, y = 100, label = "")) + 
   theme(axis.title.x = element_text(family = "Roboto", color = "#3B3B3B",
-                                    size = 12)) +
+                                    size = 12),
+        axis.text.y = element_text(size = 12, color = "#3B3B3B"),
+        axis.text.x = element_text(size = 12, color = "#3B3B3B")) +
   geom_segment(aes(x = 16, xend = 16, y = 95, yend = 0),
                arrow = arrow(length = unit(0.25, "cm"))) +
   geom_segment(aes(x = 16, xend = 16, y = 105, yend = 200),
                arrow = arrow(length = unit(0.25, "cm"))) +
   geom_segment(aes(x = 0, y = 0, xend = 15.5, yend = 0)) +
-  theme_ic()
+  theme_ic() 
 overcap
 
 finalise_plot(plot_name = overcap,
-              source = "Sources: Ministry of Justice",
+              source = "Source: Ministry of Justice, May 2023",
               save_filepath = "figs/overpop_en.png")
