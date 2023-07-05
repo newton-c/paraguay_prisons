@@ -7,7 +7,9 @@ prison_data$Prison <- as.factor(prison_data$Prison) %>%
   fct_reorder(prison_data$total)
 
 bar_data <- prison_data %>%
-  pivot_longer(cols=c("pretrial", "convicted", "total"),
+  filter(!(is.na(convicted)) & convicted > 0) %>%
+  #pivot_longer(cols=c("pretrial", "convicted", "total"),
+  pivot_longer(cols=c("pretrial", "convicted", "OfficialCapacity"),
                names_to = "detention_type", values_to = "population") 
 
 prison_bar <-
@@ -27,6 +29,29 @@ finalise_plot(plot_name = prison_bar,
               save_filepath = "figs/bar_chart_en.png")
 
 ggplotly(prison_bar)
+
+# looking at official capacity instead of total population
+prison_bar2 <-
+  ggplot(subset(bar_data, !is.na(population) & population > 0 & Prison != "Total")) +
+  geom_col(aes(x = Prison, y = population, fill = detention_type),
+           position = "dodge") +
+  coord_flip() +
+  scale_fill_manual(breaks = c("OfficialCapacity", "pretrial", "convicted"),
+                    values = c("#3B3B3B", "#A7213B", "#E5AD32"),
+                    labels = c("Official\nCapacity", "Pretrial", "Convicted")) +
+  labs(title = "Incarcerated Individuals in Paraguay",
+       subtitle = "May 2023") +
+  theme_ic()# +
+  theme(legend.position = c(-0.25, 1.05),
+        legend.direction = "horizontal")
+
+finalise_plot(plot_name = prison_bar2,
+              source = "Sources: Ministry of Justice",
+              save_filepath = "figs/bar_chart2_en.png",
+              height_pixels = 640,
+              width_pixels = 640)
+
+ggplotly(prison_bar2)
 
 # Overpopulation
 overpop_data <- prison_data %>%
