@@ -29,7 +29,7 @@ map <- ggplot() +
              size = prison_data$total / 100,
              shape = 21,
              color = "#3B3B3B",
-             fill = "#A7213B",
+             fill = "#4F7264",
              stroke = 1,
              alpha = .7) +
   geom_segment(mapping = aes(x = -60, y = -25.30843,
