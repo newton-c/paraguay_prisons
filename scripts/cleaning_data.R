@@ -23,3 +23,19 @@ rm(list = c("capacidad", "prison_pop"))
 
 toJSON(prison_data)
 write_excel_csv(prison_data, "data/prison_data.csv")
+
+# 2022, monthly crimes
+delitos22 <- read_xlsx("data/delitos2022.xlsx")
+
+hurtos <- delitos22 %>%
+  group_by(mes) %>%
+  filter(Crime == "HURTO" | Crime == "HURTO AGRAVADO") %>%
+  summarise(hurtos = sum(DENUNCIADOS))
+
+robos <- delitos22 %>%
+  group_by(mes) %>%
+  filter(grepl("ROBO", Crime)) %>%
+  summarise(robos = sum(DENUNCIADOS))
+
+robos_y_hurtos <- full_join(robos, hurtos) %>%
+  mutate(robos_y_hurtos = robos + hurtos)

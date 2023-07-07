@@ -37,7 +37,7 @@ prison_bar2 <-
            position = "dodge") +
   coord_flip() +
   scale_fill_manual(breaks = c("OfficialCapacity", "pretrial", "convicted"),
-                    values = c("#415B4F", "#8FC7BD", "#867D79"),
+                    values = c("#4F7264", "#AFDDD4", "#BCB7AD"),
                     labels = c("Official Capacity", "Pretrial", "Convicted")) +
   labs(title = "Incarcerated Individuals in Paraguay") +
   theme_ic() +
@@ -63,7 +63,7 @@ overpop_data$Prison <- as.factor(overpop_data$Prison) %>%
 #write_excel_csv(overpop_data, "data/overpop_data.csv")
 
 overcap <- ggplot(subset(overpop_data, !is.na(overpopulation))) +
-  geom_col(aes(x = Prison, y = overpopulation), fill = "#415B4F") +
+  geom_col(aes(x = Prison, y = overpopulation), fill = "#4F7264") +
   coord_flip() +
   labs(title = "Most Overpopulated Prisons in Paraguay") + 
   ylab("Actual Population vs Official Capaciaty (%)") +
