@@ -23,7 +23,7 @@ map <- ggplot() +
         plot.caption = ggplot2::element_blank()#,
         # plot.caption.position = "topleft"
   ) + 
-  coord_sf(xlim = c(-64.75, -52), ylim = c(-29, -19)) +
+  coord_sf(xlim = c(-67.75, -49), ylim = c(-29, -19)) +
   geom_point(prison_data, mapping = aes(x = lon, y = lat,
                                       fill = total),
              size = prison_data$total / 100,
@@ -32,10 +32,10 @@ map <- ggplot() +
              fill = "#4F7264",
              stroke = 1,
              alpha = .7) +
-  geom_segment(mapping = aes(x = -60, y = -25.30843,
+  geom_segment(mapping = aes(x = -65, y = -25.30843,
                              xend = -58.75, yend = -25.30842),
                arrow = arrow(length = unit(0.25, "cm"))) +
-  geom_label(mapping = aes(x = -65.355, y = -26,
+  geom_label(mapping = aes(x = -66.355, y = -26,
                            label = paste("Tacumbú has 2,847",
                                          "prisoners more than",
                                          "half of which haven't",
@@ -47,7 +47,7 @@ map <- ggplot() +
             color = "#3B3B3B",
             hjust = "left",
             label.r = unit(0, "lines")) +
-  geom_text(mapping = aes(x = -53.75, y = -29, label = 
+  geom_text(mapping = aes(x = -50.75, y = -29, label = 
     "i\u200An\u200As\u200Ai\u200Ag\u200Ah\u200At\u200Ac\u200Ar\u200Ai\u200Am\u200Ae\u200A.\u200Ao\u200Ar\u200Ag"
      ),
     size = 4, family = "Noto Serif", fontface = "italic", color = "#a5a5a5") +
