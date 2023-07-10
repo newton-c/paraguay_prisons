@@ -23,7 +23,7 @@ map <- ggplot() +
         plot.caption = ggplot2::element_blank()#,
         # plot.caption.position = "topleft"
   ) + 
-  coord_sf(xlim = c(-67.75, -49), ylim = c(-29, -19)) +
+  coord_sf(xlim = c(-67, -49.75), ylim = c(-29, -19)) +
   geom_point(prison_data, mapping = aes(x = lon, y = lat,
                                       fill = total),
              size = prison_data$total / 100,
@@ -47,11 +47,15 @@ map <- ggplot() +
             color = "#3B3B3B",
             hjust = "left",
             label.r = unit(0, "lines")) +
-  geom_text(mapping = aes(x = -50.75, y = -29, label = 
+  geom_text(mapping = aes(x = c(-60, -50, -62, -65),
+                          y = c(-22, -21, -29, -20),
+                          label = c("Paraguay", "Brazil",
+                                    "Argentina", "Bolivia")),
+            family = "Roboto Bold", size = 4, color = "#3B3B3B")  +
+  geom_text(mapping = aes(x = -51.5, y = -29, label = 
     "i\u200An\u200As\u200Ai\u200Ag\u200Ah\u200At\u200Ac\u200Ar\u200Ai\u200Am\u200Ae\u200A.\u200Ao\u200Ar\u200Ag"
      ),
     size = 4, family = "Noto Serif", fontface = "italic", color = "#a5a5a5") +
-    labs(title = "Incarcerated Individuals\nin Paraguay",
-         subtitle = "May 2023")
+    labs(title = "Incarcerated Individuals in Paraguay")
   
 map

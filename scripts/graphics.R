@@ -8,12 +8,11 @@ prison_data$Prison <- as.factor(prison_data$Prison) %>%
 
 bar_data <- prison_data %>%
   filter(!(is.na(convicted)) & convicted > 0) %>%
-  #pivot_longer(cols=c("pretrial", "convicted", "total"),
   pivot_longer(cols=c("pretrial", "convicted", "OfficialCapacity"),
                names_to = "detention_type", values_to = "population") 
 
-prison_bar <-
-  ggplot(subset(bar_data, !is.na(population) & population > 0 & Prison != "Total")) +
+prison_bar <- ggplot(subset(bar_data, !is.na(population) &
+                              population > 0 & Prison != "Total")) +
   geom_col(aes(x = Prison, y = population, fill = detention_type),
            position = "dodge") +
   coord_flip() +
@@ -31,8 +30,8 @@ finalise_plot(plot_name = prison_bar,
 ggplotly(prison_bar)
 
 # looking at official capacity instead of total population
-prison_bar2 <-
-  ggplot(subset(bar_data, !is.na(population) & population > 0 & Prison != "Total")) +
+prison_bar2 <- ggplot(subset(bar_data, !is.na(population) &
+                               population > 0 & Prison != "Total")) +
   geom_col(aes(x = Prison, y = population, fill = detention_type),
            position = "dodge") +
   coord_flip() +
