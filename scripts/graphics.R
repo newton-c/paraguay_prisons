@@ -11,26 +11,8 @@ bar_data <- prison_data %>%
   pivot_longer(cols=c("pretrial", "convicted", "OfficialCapacity"),
                names_to = "detention_type", values_to = "population") 
 
-prison_bar <- ggplot(subset(bar_data, !is.na(population) &
-                              population > 0 & Prison != "Total")) +
-  geom_col(aes(x = Prison, y = population, fill = detention_type),
-           position = "dodge") +
-  coord_flip() +
-  scale_fill_manual(breaks = c("total", "pretrial", "convicted"),
-                    values = c("#3B3B3B", "#A7213B", "#E5AD32"),
-                    labels = c("Total", "Pretrial", "Convicted")) +
-  labs(title = "Incarcerated Individuals in Paraguay",
-       subtitle = "May 2023") +
-  theme_ic()
-
-finalise_plot(plot_name = prison_bar,
-              source = "Sources: Ministry of Justice",
-              save_filepath = "figs/bar_chart_en.png")
-
-ggplotly(prison_bar)
-
 # looking at official capacity instead of total population
-prison_bar2 <- ggplot(subset(bar_data, !is.na(population) &
+prison_bar <- ggplot(subset(bar_data, !is.na(population) &
                                population > 0 & Prison != "Total")) +
   geom_col(aes(x = Prison, y = population, fill = detention_type),
            position = "dodge") +
@@ -39,20 +21,22 @@ prison_bar2 <- ggplot(subset(bar_data, !is.na(population) &
                     values = c("#4F7264", "#AFDDD4", "#BCB7AD"),
                     labels = c("Official Capacity", "Pretrial", "Convicted")) +
   labs(title = "Incarcerated Individuals in Paraguay") +
+  ylab("Population") + 
+  xlab("Prison Name") +
   theme_ic() +
-  theme(axis.title.x = element_text(family = "Roboto", color = "#3B3B3B",
-                                    size = 12),
+  theme(axis.title.y = element_text(family = "Roboto", color = "#3B3B3B",
+                                    size = 12, hjust = .5),
+        axis.title.x = element_text(family = "Roboto", color = "#3B3B3B",
+                                    size = 12, hjust = .5),
         axis.text.y = element_text(size = 12, color = "#3B3B3B"),
         axis.text.x = element_text(size = 12, color = "#3B3B3B"),
         legend.text = element_text(size = 12, color = "#3B3B3B")) 
 
-finalise_plot(plot_name = prison_bar2,
+finalise_plot(plot_name = prison_bar,
               source = "Source: Ministry of Justice, May 2023",
-              save_filepath = "figs/bar_chart2_en.png",
+              save_filepath = "figs/bar_chart_en.png",
               height_pixels = 640,
               width_pixels = 640)
-
-ggplotly(prison_bar2)
 
 # Overpopulation
 overpop_data <- prison_data %>%
