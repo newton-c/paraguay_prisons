@@ -4,7 +4,7 @@ map_df <- map_data("world") %>%
   select(lon = long, lat, group, region, id = subregion)
 
 data_labels <-  tibble(x = c(-60, -50, -62, -65),
-                      y = c(-22, -25, -29, -20),
+                      y = c(-22, -25, -29, -21),
                       label = c("Paraguay", "Brazil", "Argentina", "Bolivia"))
 
 map <- ggplot() +
@@ -29,8 +29,9 @@ map <- ggplot() +
                                               margin = ggplot2::margin(9, 0,
                                                                        20, 0),
                                               hjust = 0),
-        plot.caption = ggplot2::element_blank()) + 
-  coord_sf(xlim = c(-67, -49.75), ylim = c(-29, -19)) +
+        plot.caption = ggplot2::element_blank(),
+        plot.margin = margin(6, 6, 6, 6)) + 
+  coord_sf(xlim = c(-66.5, -49.25), ylim = c(-29, -19)) +
   geom_point(subset(prison_data, !(Prison %in% c("Nacional", "San Pedro", "Misiones"))),
              mapping = aes(x = lon, y = lat,
                            fill = total),
@@ -49,7 +50,7 @@ map <- ggplot() +
              fill = "#4F7264",
              stroke = .5,
              alpha = .3) +
-  geom_point(aes(x = c(-67.3, -63), y = -19), size = 4, alpha = .7, 
+  geom_point(aes(x = c(-66.8), y = c(-19, -19.6)), size = 4, alpha = .7, 
              shape = 21, fill = c("#4F7264", "#AFDDD4")) +
   geom_point(subset(prison_data, Prison %in% c("Nacional", "San Pedro", "Misiones")),
              mapping = aes(x = lon, y = lat,
@@ -70,7 +71,7 @@ map <- ggplot() +
              stroke = 1,
              alpha = .8) +
 
-  geom_text(mapping = aes(x = c(-67, -62.7), y = -19,
+  geom_text(mapping = aes(x = c(-66.5), y = c(-19, -19.6),
                           label = c("Actual Population",
                                     "Official Capacity")),
             hjust = "left",
@@ -82,8 +83,8 @@ map <- ggplot() +
                            label = paste("Tacumbú has 2,847",
                                          "prisoners, more than",
                                          "half of which haven't",
-                                         "had a trial. The",
-                                         "official capacity is 1,530.",
+                                         "had a trial. The official",
+                                         "capacity is 1,530.",
                                          sep = "\n")),
              family = "Roboto",
              size = 4,
@@ -95,12 +96,12 @@ map <- ggplot() +
   geom_segment(mapping = aes(x = -53, y = -26.7,
                              xend = -56.45, yend = -26.7),
                arrow = arrow(length = unit(0.25, "cm"))) +
-  geom_label(mapping = aes(x = -54.6, y = -27.45,
+  geom_label(mapping = aes(x = -54.75, y = -27.2,
                            label = paste("In Misiones prison,",
                                          "only 411 of the 1412",
                                          "are sentenced. In 2022",
-                                         "35 prisoners kidnapped a",
-                                         "guard and escaped. The",
+                                         "35 prisoners kidnapped",
+                                         "a guard and escaped. The",
                                          "official capacity is 920.",
                                          sep = "\n")),
              family = "Roboto",
@@ -111,9 +112,9 @@ map <- ggplot() +
              label.padding = unit(0.5, "lines"),
              lineheight = .9) +
   geom_segment(mapping = aes(x = -53, y = -21,
-                             xend = -56.75, yend = -23.7),
+                             xend = -56.75, yend = -24),
                arrow = arrow(length = unit(0.25, "cm"))) +
-  geom_label(mapping = aes(x = -56, y = -20.4,
+  geom_label(mapping = aes(x = -56, y = -20.7,
                            label = paste("San Pedro was the site,",
                                          "of an infamous massacre",
                                          "when members of the PCC",
