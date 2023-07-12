@@ -31,7 +31,7 @@ prison_bar <- ggplot(subset(bar_data, !is.na(population) &
         axis.text.y = element_text(family = "Roboto", size = 12, color = "#3B3B3B"),
         axis.text.x = element_text(family = "Roboto", size = 12, color = "#3B3B3B"),
         legend.text = element_text(size = 12, color = "#3B3B3B"),
-        plot.title = element_text(family = "Roboto Bold"),
+        plot.title = element_text(family = "Roboto Black"),
         panel.grid.major.y = ggplot2::element_line(
           linetype = 1,
           color = "#b3b3b3")) 
@@ -70,7 +70,7 @@ overcap <- ggplot(subset(overpop_data, !is.na(overpopulation))) +
         axis.text.x = element_text(family = "Roboto", size = 12, color = "#3B3B3B"),
         panel.grid.major.y = ggplot2::element_line(
           linetype = 1, color = "#b3b3b3"),
-        plot.title = element_text(family = "Roboto Bold")) +
+        plot.title = element_text(family = "Roboto Black")) +
   geom_segment(aes(x = 16, xend = 16, y = 95, yend = 0),
                arrow = arrow(length = unit(0.25, "cm"))) +
   geom_segment(aes(x = 16, xend = 16, y = 105, yend = 200),
