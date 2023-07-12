@@ -141,6 +141,6 @@ map <- ggplot() +
     "i\u200An\u200As\u200Ai\u200Ag\u200Ah\u200At\u200Ac\u200Ar\u200Ai\u200Am\u200Ae\u200A.\u200Ao\u200Ar\u200Ag"
      ),
     size = 3.5, family = "Noto Serif", fontface = "italic", color = "#a5a5a5") +
-    labs(title = " Incarcerated Individuals in Paraguay")
+    labs(title = " Paraguay's Overcrowded Prisons\n Have Fueled Organized Crime")
   
 map

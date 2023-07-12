@@ -28,9 +28,13 @@ prison_bar <- ggplot(subset(bar_data, !is.na(population) &
                                     size = 12, hjust = .5),
         axis.title.x = element_text(family = "Roboto", color = "#3B3B3B",
                                     size = 12, hjust = .5),
-        axis.text.y = element_text(size = 12, color = "#3B3B3B"),
-        axis.text.x = element_text(size = 12, color = "#3B3B3B"),
-        legend.text = element_text(size = 12, color = "#3B3B3B")) 
+        axis.text.y = element_text(family = "Roboto", size = 12, color = "#3B3B3B"),
+        axis.text.x = element_text(family = "Roboto", size = 12, color = "#3B3B3B"),
+        legend.text = element_text(size = 12, color = "#3B3B3B"),
+        plot.title = element_text(family = "Roboto Bold"),
+        panel.grid.major.y = ggplot2::element_line(
+          linetype = 1,
+          color = "#b3b3b3")) 
 
 finalise_plot(plot_name = prison_bar,
               source = "Source: Ministry of Justice, May 2023",
@@ -50,22 +54,28 @@ overcap <- ggplot(subset(overpop_data, !is.na(overpopulation))) +
   coord_flip() +
   labs(title = "Most Overpopulated Prisons in Paraguay") + 
   ylab("Actual Population vs Official Capaciaty (%)") +
+  xlab("Prison Name") +
   geom_hline(yintercept = 100, linetype = 2, color = "#3B3B3B") +
   geom_text(aes(x = 16.75, y = 105, label = "overcapacity", hjust = "left",
             family = "Roboto"), color = "#3B3B3B") + 
   geom_text(aes(x = 16.75, y = 95, label = "undercapacity", hjust = "right",
             family = "Roboto"), color = "#3B3B3B") +
   geom_text(aes(x = 17.4, y = 100, label = "")) + 
+  theme_ic() +
   theme(axis.title.x = element_text(family = "Roboto", color = "#3B3B3B",
                                     size = 12),
-        axis.text.y = element_text(size = 12, color = "#3B3B3B"),
-        axis.text.x = element_text(size = 12, color = "#3B3B3B")) +
+        axis.title.y = element_text(family = "Roboto", color = "#3B3B3B",
+                                    size = 12, hjust = .5),
+        axis.text.y = element_text(family = "Roboto", size = 12, color = "#3B3B3B"),
+        axis.text.x = element_text(family = "Roboto", size = 12, color = "#3B3B3B"),
+        panel.grid.major.y = ggplot2::element_line(
+          linetype = 1, color = "#b3b3b3"),
+        plot.title = element_text(family = "Roboto Bold")) +
   geom_segment(aes(x = 16, xend = 16, y = 95, yend = 0),
                arrow = arrow(length = unit(0.25, "cm"))) +
   geom_segment(aes(x = 16, xend = 16, y = 105, yend = 200),
                arrow = arrow(length = unit(0.25, "cm"))) +
-  geom_segment(aes(x = 0, y = 0, xend = 15.5, yend = 0)) +
-  theme_ic() 
+  geom_segment(aes(x = 0, y = 0, xend = 15.5, yend = 0))
 overcap
 
 finalise_plot(plot_name = overcap,
