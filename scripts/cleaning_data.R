@@ -19,7 +19,10 @@ capacidad <- read_xlsx("data/capacity2022.xlsx")
 prison_data <- full_join(prison_pop, capacidad) %>%
   select(-prison) %>%
   mutate(pretrial = as.numeric(pretrial),
-         convicted = as.numeric(convicted))
+         convicted = as.numeric(convicted),
+         Prison = ifelse(Prison == "Nacional", "Tacumbú",
+                         ifelse(Prison == "Encarnacion", "Encarnación",
+                                Prison)))
 
 rm(list = c("capacidad", "prison_pop"))
 
