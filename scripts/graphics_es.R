@@ -20,8 +20,8 @@ prison_bar <- ggplot(subset(bar_data, !is.na(population) &
   scale_fill_manual(breaks = c("OfficialCapacity", "pretrial", "convicted"),
                     values = c("#4F7264", "#AFDDD4", "#BCB7AD"),
                     labels = c("Capacidad oficial", "Prisión preventiva", "Convictos")) +
-  labs(title = "Personas presas en Paraguay") +
-  ylab("Población") + 
+  labs(title = "Desglose de la población carcelaria") +
+  ylab("Número de presos") + 
   xlab("Nombre de la prisión") +
   theme_ic() +
   theme(axis.title.y = element_text(family = "Roboto", color = "#3B3B3B",

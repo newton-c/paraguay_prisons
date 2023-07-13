@@ -4,7 +4,7 @@ map_df <- map_data("world") %>%
   select(lon = long, lat, group, region, id = subregion)
 
 data_labels <-  tibble(x = c(-60, -50, -62, -65),
-                      y = c(-22, -24.5, -29, -21),
+                      y = c(-22, -24.5, -28, -21),
                       label = c("Paraguay", "Brasil", "Argentina", "Bolivia"))
 
 map <- ggplot() +
@@ -32,19 +32,19 @@ map <- ggplot() +
         plot.caption = ggplot2::element_blank(),
         plot.margin = margin(6, 6, 6, 6)) + 
   coord_sf(xlim = c(-66.5, -49.25), ylim = c(-29, -19)) +
-  geom_point(subset(prison_data, !(Prison %in% c("Nacional", "San Pedro", "Misiones"))),
+  geom_point(subset(prison_data, !(Prison %in% c("Tacumbú", "San Pedro", "Misiones"))),
              mapping = aes(x = lon, y = lat,
                            fill = total),
-             size = subset(prison_data, !(Prison %in% c("Nacional", "San Pedro", "Misiones")))$OfficialCapacity / 100,
+             size = subset(prison_data, !(Prison %in% c("Tacumbú", "San Pedro", "Misiones")))$OfficialCapacity / 100,
              shape = 21,
              color = "#3B3B3B",
              fill = "#AFDDD4",
              stroke = .5,
              alpha = .3) +
-  geom_point(subset(prison_data, !(Prison %in% c("Nacional", "San Pedro", "Misiones"))),
+  geom_point(subset(prison_data, !(Prison %in% c("Tacumbú", "San Pedro", "Misiones"))),
              mapping = aes(x = lon, y = lat,
                            fill = total),
-             size = subset(prison_data, !(Prison %in% c("Nacional", "San Pedro", "Misiones")))$total / 100,
+             size = subset(prison_data, !(Prison %in% c("Tacumbú", "San Pedro", "Misiones")))$total / 100,
              shape = 21,
              color = "#3B3B3B",
              fill = "#4F7264",
@@ -52,19 +52,19 @@ map <- ggplot() +
              alpha = .3) +
   geom_point(aes(x = c(-66.8), y = c(-19, -19.6)), size = 4, alpha = .7, 
              shape = 21, fill = c("#4F7264", "#AFDDD4")) +
-  geom_point(subset(prison_data, Prison %in% c("Nacional", "San Pedro", "Misiones")),
+  geom_point(subset(prison_data, Prison %in% c("Tacumbú", "San Pedro", "Misiones")),
              mapping = aes(x = lon, y = lat,
                                       fill = total),
-             size = subset(prison_data, Prison %in% c("Nacional", "San Pedro", "Misiones"))$total / 100,
+             size = subset(prison_data, Prison %in% c("Tacumbú", "San Pedro", "Misiones"))$total / 100,
              shape = 21,
              color = "#3B3B3B",
              fill = "#4F7264",
              stroke = 1,
              alpha = .8) +
-  geom_point(subset(prison_data, Prison %in% c("Nacional", "San Pedro", "Misiones")),
+  geom_point(subset(prison_data, Prison %in% c("Tacumbú", "San Pedro", "Misiones")),
              mapping = aes(x = lon, y = lat,
                            fill = total),
-             size = subset(prison_data, Prison %in% c("Nacional", "San Pedro", "Misiones"))$OfficialCapacity / 100,
+             size = subset(prison_data, Prison %in% c("Tacumbú", "San Pedro", "Misiones"))$OfficialCapacity / 100,
              shape = 21,
              color = "#3B3B3B",
              fill = "#AFDDD4",
@@ -144,6 +144,9 @@ map <- ggplot() +
     "i\u200An\u200As\u200Ai\u200Ag\u200Ah\u200At\u200Ac\u200Ar\u200Ai\u200Am\u200Ae\u200A.\u200Ao\u200Ar\u200Ag"
      ),
     size = 3.5, family = "Noto Serif", fontface = "italic", color = "#a5a5a5") +
+  geom_text(mapping = aes(x = -63, y = -29.2, label = "Fuente: Ministerio de Justicia, mayo de 2023"
+  ),
+  size = 3.5, family = "Roboto", color = "#a5a5a5") +
     labs(title = "  Las sobrepobladas cárceles de Paraguay\n  han favorecido el crimen organizado")
   
 map

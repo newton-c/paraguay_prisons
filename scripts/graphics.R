@@ -20,8 +20,8 @@ prison_bar <- ggplot(subset(bar_data, !is.na(population) &
   scale_fill_manual(breaks = c("OfficialCapacity", "pretrial", "convicted"),
                     values = c("#4F7264", "#AFDDD4", "#BCB7AD"),
                     labels = c("Official Capacity", "Pretrial", "Convicted")) +
-  labs(title = "Incarcerated Individuals in Paraguay") +
-  ylab("Population") + 
+  labs(title = "Prison Population Breakdown") +
+  ylab("Number of Inmates") + 
   xlab("Prison Name") +
   theme_ic() +
   theme(axis.title.y = element_text(family = "Roboto", color = "#3B3B3B",
@@ -35,6 +35,7 @@ prison_bar <- ggplot(subset(bar_data, !is.na(population) &
         panel.grid.major.y = ggplot2::element_line(
           linetype = 1,
           color = "#b3b3b3")) 
+prison_bar
 
 finalise_plot(plot_name = prison_bar,
               source = "Source: Ministry of Justice, May 2023",
