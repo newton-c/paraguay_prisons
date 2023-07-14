@@ -22,7 +22,7 @@ prison_bar <- ggplot(subset(bar_data, !is.na(population) &
                     labels = c("Capacidad oficial", "Prisión preventiva", "Convictos")) +
   labs(title = "Desglose de la población carcelaria") +
   ylab("Número de presos") + 
-  xlab("Nombre de la prisión") +
+  xlab("Nombre de la prisión\n") +
   theme_ic() +
   theme(axis.title.y = element_text(family = "Roboto", color = "#3B3B3B",
                                     size = 12, hjust = .5),
@@ -34,10 +34,11 @@ prison_bar <- ggplot(subset(bar_data, !is.na(population) &
         plot.title = element_text(family = "Roboto Black"),
         panel.grid.major.y = ggplot2::element_line(
           linetype = 1,
-          color = "#b3b3b3")) 
+          color = "#b3b3b3"),
+        plot.margin = margin(25, 25, 10, 25)) 
 
 finalise_plot(plot_name = prison_bar,
-              source = "Fuente: Ministerio de Justicia, mayo de 2023",
+              source = "      Fuente: Ministerio de Justicia, mayo de 2023\n",
               save_filepath = "figs/bar_chart_es.png",
               height_pixels = 640,
               width_pixels = 640)
@@ -54,7 +55,7 @@ overcap <- ggplot(subset(overpop_data, !is.na(overpopulation))) +
   coord_flip() +
   labs(title = "Prisiones más sobrepobladas de Paraguay") + 
   ylab("Población real vs Capacidad oficial (%)") +
-  xlab("Nombre de la prisión") +
+  xlab("Nombre de la prisión\n") +
   geom_hline(yintercept = 100, linetype = 2, color = "#3B3B3B") +
   geom_text(aes(x = 16.75, y = 105, label = "Exceso de capacidad", hjust = "left",
             family = "Roboto"), color = "#3B3B3B") + 
@@ -70,7 +71,8 @@ overcap <- ggplot(subset(overpop_data, !is.na(overpopulation))) +
         axis.text.x = element_text(family = "Roboto", size = 12, color = "#3B3B3B"),
         panel.grid.major.y = ggplot2::element_line(
           linetype = 1, color = "#b3b3b3"),
-        plot.title = element_text(family = "Roboto Black")) +
+        plot.title = element_text(family = "Roboto Black"),
+        plot.margin = margin(25, 25, 10, 25)) +
   geom_segment(aes(x = 16, xend = 16, y = 95, yend = 0),
                arrow = arrow(length = unit(0.25, "cm"))) +
   geom_segment(aes(x = 16, xend = 16, y = 105, yend = 200),
@@ -79,5 +81,5 @@ overcap <- ggplot(subset(overpop_data, !is.na(overpopulation))) +
 overcap
 
 finalise_plot(plot_name = overcap,
-              source = "Fuente: Ministerio de Justicia, mayo de 2023",
+              source = "      Fuente: Ministerio de Justicia, mayo de 2023\n",
               save_filepath = "figs/overpop_es.png")
